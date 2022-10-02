@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Authentication({ children }) {
     return (
         <div className="wrapper">
@@ -7,5 +9,9 @@ function Authentication({ children }) {
         </div>
     );
 }
+
+Authentication.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Authentication;

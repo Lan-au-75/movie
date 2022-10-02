@@ -1,3 +1,7 @@
+:root {
+    --header-height: 64px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 @tailwind base;
@@ -35,5 +39,16 @@
         font-family: 'ProximaNova';
         src: url('/assets/fonts/ProximaNova-Semibold.woff2');
         font-weight: 700;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply text-white px-5 py-2 bg-transparent border border-solid 
+        border-slate-200 rounded min-h-[36px] min-w-[100px] select-none leading-3 font-medium;
+    }
+
+    .btn + .btn {
+        @apply ml-3;
     }
 }
