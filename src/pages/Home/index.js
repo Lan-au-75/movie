@@ -71,7 +71,7 @@ function Home() {
                             <div key={movie.id} className="min-w-[155px] w-[155px]">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
                                     <img
-                                        className="w-full h-full object-cover object-center"
+                                        className="w-full h-full object-cover object-center rounded-lg"
                                         src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                                         alt={movie?.title}
                                     />
