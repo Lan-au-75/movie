@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import Button from '~/components/Button';
 import requests from '~/requests';
 
 function Home() {
@@ -50,11 +51,13 @@ function Home() {
 
                 <div className="absolute top-[40%] p-8">
                     <h2 className="text-3xl text-white mb-2">{randomMovies?.title} </h2>
-                    <div>
-                        <button className="btn text-black bg-white hover:bg-red-600 hover:text-teal-50 hover:border-none  ">
+                    <div className="flex">
+                        <Button className="btn text-black bg-white hover:bg-red-600 hover:text-teal-50 transition-all">
                             Play
-                        </button>
-                        <button className="btn hover:opacity-90">Watch Later</button>
+                        </Button>
+                        <Button className="btn border border-solid border-slate-200 hover:opacity-90">
+                            Watch Later
+                        </Button>
                     </div>
                     <p className="mt-2 text-white">Release: {randomMovies?.release_date} </p>
                     <p className="mt-2 text-white w-[70%] ">Overview: {truncateString(randomMovies?.overview, 150)} </p>
