@@ -9,13 +9,12 @@
 # testing
 /coverage
 
+#api_key
+/.env
+
 # production
 /build
 
-#.env
-
-.env
-.env.development
 
 # misc
 .DS_Store
@@ -23,6 +22,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env.development
 
 npm-debug.log*
 yarn-debug.log*
