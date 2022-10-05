@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Button({ children, className, to, href, onClick, ...passProps }) {
+function Button({ children, className, to, href, leftIcon, rightIcon, onClick, ...passProps }) {
     let Components = 'button';
 
     const props = { onClick, ...passProps };
@@ -18,7 +18,9 @@ function Button({ children, className, to, href, onClick, ...passProps }) {
 
     return (
         <Components className={className} {...props}>
-            {children}
+            {leftIcon && <span className="icon">{leftIcon}</span>}
+            <span className="title">{children}</span>
+            {rightIcon && <span className="icon">{rightIcon}</span>}
         </Components>
     );
 }
@@ -28,6 +30,8 @@ Button.propTypes = {
     className: PropTypes.string,
     to: PropTypes.string,
     href: PropTypes.string,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
     onClick: PropTypes.func,
 };
 

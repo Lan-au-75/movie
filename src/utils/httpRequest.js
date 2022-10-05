@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-const instance = axios.create({
-    baseURL: 'https://some-domain.com/api/',
-    timeout: 1000,
-    headers: { 'X-Custom-Header': 'foobar' },
+const httpRequest = axios.create({
+    baseURL: process.env.REACT_APP_BASE_URL,
 });
+
+export const getHttpRequest = async (request) => {
+    const response = await httpRequest.get(request);
+
+    return response?.data;
+};
+
+export default httpRequest;

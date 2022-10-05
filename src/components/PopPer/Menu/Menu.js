@@ -18,6 +18,7 @@ function Menu({ children, items = [] }) {
 
             const handleChildren = () => {
                 if (isParent) {
+                    document.body.classList.add('hidden-overplay');
                     setHistory((prev) => [...prev, item.children]);
                 }
             };
@@ -39,22 +40,24 @@ function Menu({ children, items = [] }) {
         <div className="menu-list" tabIndex="-1" {...props}>
             <PopPerWrapper className="pb-[10px]">
                 {history.length > 1 ? (
-                    <header className=" flex items-center justify-items-start text-[#00000099] pl-5 py-4">
+                    <header className=" flex items-center justify-items-start text-[#00000099] pl-5 h-[50px] ">
                         <Button className="text-[20px]" onClick={handleBack}>
                             <IoChevronBack></IoChevronBack>
                         </Button>
                         <Button className="ml-2">{current?.title}</Button>
                     </header>
                 ) : (
-                    <header className=" flex flex-col text-[#00000099] pl-5 py-4">
-                        <Button to="/profile">Riotgamelolgare@gmail.com</Button>
-                        <Button to="/profile" className="text-left">
-                            View profile
+                    <header className=" flex flex-col text-[#00000099] pl-5 py-4 ">
+                        <Button to="/profile" className="lowercase">
+                            riotgamelolgare@gmail.com
+                        </Button>
+                        <Button to="/profile" className="text-left capitalize ">
+                            view profile
                         </Button>
                     </header>
                 )}
 
-                {renderItem()}
+                <div className="max-h-[700px] overflow-y-auto"> {renderItem()}</div>
             </PopPerWrapper>
         </div>
     );
@@ -64,11 +67,15 @@ function Menu({ children, items = [] }) {
         <div>
             <HeadlessTippy
                 interactive
+                offset={[10, 10]}
                 hideOnClick={false}
-                delay={[0, 500]}
+                delay={[0, 600]}
                 placement="bottom"
                 render={renderResults}
-                onHide={() => setHistory((prev) => prev.slice(0, 1))}
+                onHide={() => {
+                    document.body.classList.remove('hidden-overplay');
+                    setHistory((prev) => prev.slice(0, 1));
+                }}
             >
                 {children}
             </HeadlessTippy>

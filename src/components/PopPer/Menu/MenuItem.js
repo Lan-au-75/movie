@@ -9,7 +9,14 @@ function MenuItem({ data, onClick }) {
     });
 
     return (
-        <Button to={data?.to} href={data?.href} className={className} onClick={onClick}>
+        <Button
+            leftIcon={data.leftIcon}
+            rightIcon={data.rightIcon}
+            to={data?.to}
+            href={data?.href}
+            className={className}
+            onClick={onClick}
+        >
             {data?.title}
         </Button>
     );
