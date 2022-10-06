@@ -1,5 +1,5 @@
 function Trending() {
-    return <h1>Trending Page</h1>;
+    return 123;
 }
 
 export default Trending;

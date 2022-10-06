@@ -8,6 +8,7 @@ const routers = {
     popular: '/movie/popular',
     topRated: '/movie/top_rated',
     upcoming: '/movie/upcoming',
+    movie: '/movie/:id',
 };
 
 export default routers;

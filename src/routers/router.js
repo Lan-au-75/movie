@@ -6,6 +6,7 @@ import DefaultLayout, { Authentication } from '~/layouts';
 // Page
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
+import Movie from '~/pages/Movie';
 import Popular from '~/pages/Movie/Popular';
 import TopRated from '~/pages/Movie/TopRated';
 import Trending from '~/pages/Movie/Trending';
@@ -53,6 +54,12 @@ const publicRouter = [
     {
         path: config.routers.upcoming,
         element: Upcoming,
+        layout: DefaultLayout,
+    },
+
+    {
+        path: config.routers.movie,
+        element: Movie,
         layout: DefaultLayout,
     },
 ];

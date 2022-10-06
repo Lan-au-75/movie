@@ -64,6 +64,20 @@
 }
 
 @layer components {
+    // Header
+
+    .header {
+        @apply flex justify-center items-center fixed top-0 bg-primary w-full shadow-lg z-[999] capitalize;
+    }
+
+    .navBar-down {
+        @apply top-[-64px] transition-all ease-linear;
+    }
+
+    .navBar-up {
+        @apply top-0 transition-all ease-linear;
+    }
+
     // Button
     .btn {
         @apply text-white px-5 py-2 bg-transparent flex justify-center items-center
@@ -110,5 +124,34 @@
 
     .hidden-overplay {
         overflow-y: hidden;
+    }
+
+    // Swiper custom
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        @apply hidden;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        @apply text-[18px] font-medium bg-white leading-8 text-black rounded-[50%] shadow-sm max-h-[32px] min-w-[32px] w-full h-full;
+    }
+
+    .container {
+        .swiper-button-prev.swiper-button-disabled {
+            @apply cursor-auto opacity-40 pointer-events-auto;
+        }
+
+        .swiper-button-next.swiper-button-disabled {
+            @apply cursor-auto opacity-40 pointer-events-auto;
+        }
+
+        .swiper-scrollbar {
+            @apply absolute top-[98%] h-[10px] w-full left-0 bottom-[10px] bg-[#00000000];
+        }
+        .swiper-scrollbar-drag {
+            @apply cursor-grabbing bg-[#16182333];
+        }
     }
 }

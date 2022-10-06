@@ -1,21 +1,11 @@
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 import Button from '~/components/Button';
-import * as popularServices from '~/services/popularServices';
+import Image from '~/components/Image';
+import images from '~/assets/images';
 
-function Slider() {
-    const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            const data = await popularServices.popular();
-
-            setMovies(data);
-        };
-
-        fetchApi();
-    }, []);
-
+function Slider({ movies }) {
     const randomMovies = movies[Math.floor(Math.random() * movies.length)];
 
     const truncateString = (str = '', num) => {
@@ -27,13 +17,14 @@ function Slider() {
     };
 
     return (
-        <div className="flex relative bg-black">
+        <div className="flex relative">
             <div className="absolute  w-full h-[600px]  mt-[var(--header-height)] bg-gradient-to-r from-black"></div>
             <div className=" mt-[var(--header-height)] w-full h-[600px]">
-                <img
+                <Image
                     className="w-full h-full object-cover"
                     src={`https://image.tmdb.org/t/p/original/${randomMovies?.backdrop_path}`}
                     alt={randomMovies?.title}
+                    fallBack={images.noPoster}
                 />
             </div>
 
@@ -54,4 +45,8 @@ function Slider() {
     );
 }
 
-export default Slider;
+Slider.propTypes = {
+    movies: PropTypes.array.isRequired,
+};
+
+export default memo(Slider);

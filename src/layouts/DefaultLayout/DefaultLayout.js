@@ -9,7 +9,7 @@ function DefaultLayout({ children }) {
             <Header></Header>
             <div className="contain">
                 <div className="banner"></div>
-                <div className="content">{children}</div>
+                <div className="content ">{children}</div>
             </div>
             <Footer></Footer>
         </div>

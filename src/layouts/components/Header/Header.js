@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { BiPlusMedical } from 'react-icons/bi';
 import { BsSearch } from 'react-icons/bs';
 import { IoMdNotifications } from 'react-icons/io';
@@ -7,6 +8,7 @@ import { VscCommentDiscussion } from 'react-icons/vsc';
 import { AiOutlineAreaChart, AiOutlineEdit, AiOutlineSetting, AiOutlineLogin } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 
 import images from '~/assets/images';
 import config from '~/config';
@@ -199,9 +201,30 @@ const MENU_ITEMS = [
 function Header() {
     const currentUser = true;
 
+    // Header Scroll
+    const [scrollY, setScrollY] = useState(0);
+    const [navBar, setNavBar] = useState(false);
+
+    useEffect(() => {
+        const handleScrollY = () => {
+            if (window.scrollY > 106) {
+                setScrollY(window.scrollY);
+                setNavBar(true);
+            }
+
+            if (window.scrollY < scrollY) {
+                setNavBar(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScrollY);
+
+        return () => window.removeEventListener('scroll', handleScrollY);
+    }, [scrollY]);
+
     return (
-        <div className="flex justify-center fixed top-0 bg-primary w-full shadow-2xl z-[999] capitalize">
-            <header className="max-w-headerWidth flex justify-between w-full px-10">
+        <div className={clsx('header', navBar ? 'navBar-down' : 'navBar-up')}>
+            <header className="max-w-headerWidth items-center flex justify-between w-full px-10">
                 <div className="flex items-center h-[var(--header-height)]">
                     <Link to={config.routers.home} className="flex items-center w-[228px] h-full px-2 py-5">
                         <Image src={images.logo} alt="Logo TMDB" className=" w-full h-5" />
