@@ -49,7 +49,7 @@ function Carousel({ title, data }) {
                                             fallBack={images.noPoster}
                                         />
                                     </Link>
-                                    <Circle num={data.popularity}></Circle>
+                                    <Circle num={data.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px] ">
                                     <Link to={`/movie/${data.id}`}>

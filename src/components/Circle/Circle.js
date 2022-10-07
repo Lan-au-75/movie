@@ -4,7 +4,40 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 function Circle({ num }) {
-    const percentage = Math.floor(num / 100).toString();
+    let percentage = Math.floor(num * 10).toString();
+
+    if (percentage <= 0) {
+        percentage = 'NR';
+        return (
+            <CircularProgressbar
+                className="absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]"
+                value={percentage}
+                text={`${percentage}`}
+                background={true}
+                styles={buildStyles({
+                    rotation: 1,
+
+                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                    strokeLinecap: 'round',
+
+                    // Text size
+                    textSize: '26px',
+
+                    // How long animation takes to go from one percentage to another, in seconds
+                    pathTransitionDuration: 0.5,
+
+                    // Can specify path transition in more detail, or remove it entirely
+                    // pathTransition: 'none',
+
+                    // Colors
+                    pathColor: `#666666`,
+                    textColor: '#fff',
+                    trailColor: 'rgba(102, 102, 102,0.3)',
+                    backgroundColor: '#081c22',
+                })}
+            />
+        );
+    }
 
     if (percentage < 40) {
         return (
@@ -106,7 +139,7 @@ function Circle({ num }) {
 }
 
 Circle.propTypes = {
-    num: PropTypes.number.isRequired,
+    num: PropTypes.number,
 };
 
 export default Circle;

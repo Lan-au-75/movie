@@ -2,9 +2,9 @@ import { getHttpRequest } from '~/utils/httpRequest';
 
 import requests from '~/requests';
 
-const trending = async ({ page }) => {
+const upComing = async ({ page }) => {
     try {
-        const response = await getHttpRequest(requests.requestTrending, {
+        const response = await getHttpRequest(requests.requestUpcoming, {
             params: {
                 page,
             },
@@ -16,4 +16,4 @@ const trending = async ({ page }) => {
     }
 };
 
-export { trending };
+export { upComing };

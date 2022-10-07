@@ -2,9 +2,13 @@ import { getHttpRequest } from '~/utils/httpRequest';
 
 import requests from '~/requests';
 
-const popular = async () => {
+const popular = async ({ page }) => {
     try {
-        const response = await getHttpRequest(requests.requestPopular);
+        const response = await getHttpRequest(requests.requestPopular, {
+            params: {
+                page,
+            },
+        });
 
         return response?.results;
     } catch (error) {

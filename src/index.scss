@@ -101,7 +101,7 @@
 
     .animation-header {
         @apply relative before:content-[''] before:absolute before:bg-red-600 before:h-[2px] before:w-0 hover:before:w-full
-        before:left-[50%] before:bottom-[-10px] before:translate-x-[-50%] before:transition-all before:ease-linear before:delay-200;
+        before:left-[50%] before:bottom-[-10px] before:translate-x-[-50%] before:transition-all before:ease-linear before:delay-100;
     }
 
     // Popper

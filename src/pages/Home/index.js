@@ -5,8 +5,8 @@ import 'swiper/scss';
 import 'swiper/css/bundle';
 
 import Circle from '~/components/Circle';
-import * as popularServices from '~/services/popularServices';
-import * as trendingServices from '~/services/trendingServices';
+import * as trendingAllServices from '~/services/trendingAllServices';
+import * as trendingTVServices from '~/services/trendingTVServices';
 import Slider from '~/components/Slider';
 import Image from '~/components/Image';
 import images from '~/assets/images';
@@ -18,8 +18,11 @@ function Home() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const data = await popularServices.popular();
-            const dataTrending = await trendingServices.trending();
+            const data = await trendingTVServices.trendingTV();
+
+            console.log(data);
+
+            const dataTrending = await trendingAllServices.trending();
 
             setMovies(data);
             setTrendies(dataTrending);
@@ -48,15 +51,15 @@ function Home() {
                                             fallBack={images.noPoster}
                                         />
                                     </Link>
-                                    <Circle num={movie.popularity}></Circle>
+                                    <Circle num={movie.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px]">
                                     <Link to={`/movie/${movie.id}`}>
                                         <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
-                                            {movie?.title}
+                                            {movie?.title || movie?.original_name}
                                         </h2>
                                     </Link>
-                                    <p className="text-[#00000099]"> {movie?.release_date}</p>
+                                    <p className="text-[#00000099]"> {movie?.release_date || movie?.first_air_date}</p>
                                 </div>
                             </div>
                         ))}
