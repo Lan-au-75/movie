@@ -16,7 +16,7 @@ function Carousel({ title, data }) {
     return (
         <>
             <h2 className="text-2xl text-black font-bold pt-[30px]">{title}</h2>
-            <div className="container relative pt-[20px]  ">
+            <div className="container relative">
                 <Swiper
                     observer={true}
                     modules={[Navigation, Scrollbar]}
@@ -36,6 +36,8 @@ function Carousel({ title, data }) {
                     }}
                     loop={false}
                     loopFillGroupWithBlank={false}
+                    wrapperClass="swiper-wrapper"
+                    className="mt-[-80px]"
                 >
                     {data.map((data) => (
                         <SwiperSlide key={data.id}>
@@ -54,10 +56,10 @@ function Carousel({ title, data }) {
                                 <div className="pt-[26px] px-[10px] ">
                                     <Link to={`/movie/${data.id}`}>
                                         <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
-                                            {data?.title}
+                                            {data?.title || data?.original_name}
                                         </h2>
                                     </Link>
-                                    <p className="text-[#00000099]"> {data?.release_date}</p>
+                                    <p className="text-[#00000099]"> {data?.release_date || data?.first_air_date}</p>
                                 </div>
                             </div>
                         </SwiperSlide>

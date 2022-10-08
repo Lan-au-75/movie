@@ -1,46 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import 'swiper/scss';
-import 'swiper/css/bundle';
-
-import Circle from '~/components/Circle';
-import * as trendingAllServices from '~/services/trendingAllServices';
-import * as trendingTVServices from '~/services/trendingTVServices';
-import Slider from '~/components/Slider';
-import Image from '~/components/Image';
 import images from '~/assets/images';
 import Carousel from '~/components/Carousel';
+import Circle from '~/components/Circle';
+import Image from '~/components/Image';
+import Slider from '~/components/Slider';
+import { HomeContext } from '~/components/Context/HomeContext';
 
 function Home() {
-    const [movies, setMovies] = useState([]);
-    const [trendies, setTrendies] = useState([]);
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            const data = await trendingTVServices.trendingTV();
-
-            console.log(data);
-
-            const dataTrending = await trendingAllServices.trending();
-
-            setMovies(data);
-            setTrendies(dataTrending);
-        };
-
-        fetchApi();
-    }, []);
+    const context = useContext(HomeContext);
 
     return (
         <>
             {/* Slider */}
-            <Slider movies={movies}></Slider>
+            <Slider movies={context.movies}></Slider>
             {/* Content */}
             <div className="flex justify-center">
                 <div className="max-w-headerWidth w-full px-12">
                     <h2 className="text-2xl text-black font-bold pt-[30px]">What's Popular</h2>
                     <div className="grid grid-cols-[repeat(7,155px)] gap-5 py-5 ">
-                        {movies.map((movie) => (
+                        {context.movies.map((movie) => (
                             <div key={movie.id} className="min-w-[155px] w-[155px]">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
                                     <Link to={`/movie/${movie.id}`}>
@@ -66,7 +46,7 @@ function Home() {
                     </div>
 
                     <div className="pb-[166px]">
-                        <Carousel title="Trending" data={trendies}></Carousel>
+                        <Carousel title="Trending" data={context.trendies}></Carousel>
                     </div>
                 </div>
             </div>

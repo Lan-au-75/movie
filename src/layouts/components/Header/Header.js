@@ -10,6 +10,7 @@ import { MdLocalMovies } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
+import { handleScrollOnTop } from '~/handleEvent';
 import images from '~/assets/images';
 import config from '~/config';
 import Menu from '~/components/PopPer/Menu';
@@ -233,18 +234,21 @@ function Header() {
                         <Link
                             to={config.routers.trending}
                             className="flex items-center px-2 py-5 h-full hover:opacity-90"
+                            onClick={handleScrollOnTop}
                         >
                             <li className="animation-header">movie trending</li>
                         </Link>
                         <Link
                             to={config.routers.popular}
                             className="flex items-center px-2 py-5 h-full hover:opacity-90"
+                            onClick={handleScrollOnTop}
                         >
                             <li className="animation-header">movie popular</li>
                         </Link>
                         <Link
                             to={config.routers.topRated}
                             className="flex items-center px-2 py-5 h-full hover:opacity-90"
+                            onClick={handleScrollOnTop}
                         >
                             <li className="animation-header">movie top</li>
                         </Link>
@@ -252,6 +256,7 @@ function Header() {
                         <Link
                             to={config.routers.upcoming}
                             className="flex items-center px-2 py-5 h-full hover:opacity-90"
+                            onClick={handleScrollOnTop}
                         >
                             <li className="animation-header">movie upcoming</li>
                         </Link>

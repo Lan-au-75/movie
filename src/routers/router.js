@@ -5,7 +5,7 @@ import DefaultLayout, { Authentication } from '~/layouts';
 
 // Page
 import Home from '~/pages/Home';
-import Login from '~/pages/Login';
+import LoginScreen from '~/pages/LoginScreen';
 import Movie from '~/pages/Movie';
 import Popular from '~/pages/Movie/Popular';
 import TopRated from '~/pages/Movie/TopRated';
@@ -22,7 +22,7 @@ const publicRouter = [
     },
     {
         path: config.routers.login,
-        element: Login,
+        element: LoginScreen,
         layout: Authentication,
     },
     {

@@ -139,6 +139,10 @@
     }
 
     .container {
+        .swiper-wrapper {
+            @apply pt-[100px] pb-[50px];
+        }
+
         .swiper-button-prev.swiper-button-disabled {
             @apply cursor-auto opacity-40 pointer-events-auto;
         }

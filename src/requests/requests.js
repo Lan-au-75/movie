@@ -1,5 +1,7 @@
 export const INIT_PAGE = 1;
 
+export const QUERY = 'a';
+
 export const ApiKey = process.env.REACT_APP_IMDB_API_kEY;
 
 const requests = {
@@ -10,6 +12,7 @@ const requests = {
     requestPopular: `movie/popular?api_key=${ApiKey}&language=en-US&page=${INIT_PAGE}`,
     requestTopRated: `movie/top_rated?api_key=${ApiKey}&language=en-US&page=${INIT_PAGE}`,
     requestUpcoming: `movie/upcoming?api_key=${ApiKey}&language=en-US&page=${INIT_PAGE}`,
+    requestSearch: `search/movie?api_key=${ApiKey}&language=en-US&query=${QUERY}&page=1&include_adult=false`,
 };
 
 export default requests;

@@ -1,32 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
+import { ApiContext } from '~/components/Context/ApiContext';
 import MovieItem from '~/components/MovieItem';
-import * as upComingServices from '~/services/upComingServices';
-import { INIT_PAGE } from '~/requests';
 
 function Upcoming() {
-    const [upComing, setUpComing] = useState([]);
-    const [page, setPage] = useState(INIT_PAGE);
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            const dataUpComing = await upComingServices.upComing({
-                page,
-            });
-
-            setUpComing((prev) => {
-                return [...prev, ...dataUpComing];
-            });
-        };
-
-        fetchApi();
-    }, [page]);
-
-    const handleLoadMore = () => {
-        setPage(page + 1);
-    };
-
-    return <MovieItem onClick={handleLoadMore} title="Top Movies" movies={upComing}></MovieItem>;
+    const context = useContext(ApiContext);
+    return (
+        <MovieItem onClick={context.handleLoadMoreUpComing} title="Top Movies" movies={context.upComing}></MovieItem>
+    );
 }
 
 export default Upcoming;

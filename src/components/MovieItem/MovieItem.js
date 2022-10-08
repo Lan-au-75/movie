@@ -30,9 +30,9 @@ function MovieItem({ title, movies = [], onClick }) {
 
     return (
         <div className="flex justify-center">
-            <div className="max-w-headerWidth w-full px-12 pb-5">
+            <div className="max-w-headerWidth w-full px-12 pb-5 mt-[var(--header-height)]">
                 <h2 className="text-2xl text-black font-bold pt-[30px]">{title}</h2>
-                <div className="grid grid-cols-[repeat(6,180px)] gap-5 py-5 ">
+                <div className="grid grid-cols-[repeat(6,180px)] gap-6 py-5 ">
                     {movies.map((data, id) => (
                         <div
                             key={data?.id || id}
@@ -49,7 +49,7 @@ function MovieItem({ title, movies = [], onClick }) {
                                 </Link>
                                 <Circle num={data.vote_average}></Circle>
                             </div>
-                            <div className="pt-[26px] px-[10px]">
+                            <div className="pt-[26px] px-[10px] pb-[12px]">
                                 <Link to={`/movie/${data?.id}`}>
                                     <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
                                         {data?.title}
@@ -77,7 +77,7 @@ function MovieItem({ title, movies = [], onClick }) {
 
                 {showGoToTop && (
                     <div
-                        className="fixed flex items-center justify-center bottom-[20%] right-5 h-[40px] w-[40px] rounded
+                        className="fixed flex items-center justify-center bottom-[20%] right-[10%] h-[40px] w-[40px] rounded
                          bg-[rgb(1,180,228)] text-[22px] text-white hover:opacity-95 cursor-pointer z-10"
                         onClick={handleGoToTop}
                     >

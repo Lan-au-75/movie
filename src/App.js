@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { publicRouter } from '~/routers';
 import DefaultLayout, { Authentication } from '~/layouts';
+import { ApiProvider } from './components/Context/ApiContext';
+import { HomeProvider } from './components/Context/HomeContext';
 
 function App() {
     return (
@@ -33,9 +35,13 @@ function App() {
                             key={index}
                             path={route.path}
                             element={
-                                <Layout>
-                                    <Page></Page>
-                                </Layout>
+                                <HomeProvider>
+                                    <ApiProvider>
+                                        <Layout>
+                                            <Page></Page>
+                                        </Layout>
+                                    </ApiProvider>
+                                </HomeProvider>
                             }
                         ></Route>
                     );

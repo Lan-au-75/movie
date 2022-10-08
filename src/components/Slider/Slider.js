@@ -18,8 +18,9 @@ function Slider({ movies }) {
 
     return (
         <div className="flex relative">
-            <div className="absolute  w-full h-[600px]  mt-[var(--header-height)] bg-gradient-to-r from-black"></div>
-            <div className=" mt-[var(--header-height)] w-full h-[600px]">
+            {/* overplay */}
+            <div className="absolute  w-full h-[700px]  mt-[var(--header-height)] bg-gradient-to-r from-black"></div>
+            <div className=" mt-[var(--header-height)] w-full h-[700px]">
                 <Image
                     className="w-full h-full object-cover"
                     src={`https://image.tmdb.org/t/p/original/${randomMovies?.backdrop_path}`}
@@ -38,7 +39,7 @@ function Slider({ movies }) {
                         watch later
                     </Button>
                 </div>
-                <p className="mt-2 text-white">Release: {randomMovies?.release_date} </p>
+                <p className="mt-2 text-white">Release: {randomMovies?.release_date || randomMovies?.first_air_date}</p>
                 <p className="mt-2 text-white w-[70%] ">Overview: {truncateString(randomMovies?.overview, 150)} </p>
             </div>
         </div>
