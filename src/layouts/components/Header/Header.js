@@ -9,6 +9,7 @@ import { AiOutlineAreaChart, AiOutlineEdit, AiOutlineSetting, AiOutlineLogin } f
 import { MdLocalMovies } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 
 import { handleScrollOnTop } from '~/handleEvent';
 import images from '~/assets/images';
@@ -194,13 +195,16 @@ const MENU_ITEMS = [
     {
         leftIcon: <AiOutlineLogin />,
         title: 'Log out',
-        to: '/logout',
+        href: '/',
         separate: true,
+        currentUser: true,
     },
 ];
 
 function Header() {
-    const currentUser = true;
+    const state = useSelector((state) => state.currentUsers);
+
+    const currentUser = !!state;
 
     // Header Scroll
     const [scrollY, setScrollY] = useState(0);
@@ -305,7 +309,7 @@ function Header() {
                             <IoMdNotifications className="flex items-center px-2 py-5 h-full text-[36px] cursor-pointer ml-3"></IoMdNotifications>
 
                             <Link
-                                to={config.routers.trending}
+                                to={config.routers.login}
                                 className="flex items-center px-2 py-5 h-full hover:opacity-90 ml-3"
                             >
                                 <li>Sign In</li>

@@ -2,7 +2,7 @@ import images from '~/assets/images';
 
 function Footer() {
     return (
-        <footer className=" flex items-center justify-center bg-primary max-w-[100%] w-[100vw] max-h-[360px] h-full">
+        <footer className=" flex items-center justify-center bg-primary max-w-[100%] w-full h-full relative inset-0 ">
             <nav className="flex py-[80px] ">
                 <div className="max-w-[300px] mr-[40px]">
                     <div className="flex justify-end mb-8">

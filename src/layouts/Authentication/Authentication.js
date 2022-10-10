@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 function Authentication({ children }) {
     return (
         <div className="wrapper">
-            <div className="container">
+            <div>
                 <div className="content">{children}</div>
             </div>
         </div>

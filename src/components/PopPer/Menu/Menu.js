@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { IoChevronBack } from 'react-icons/io5';
+import { signOut } from 'firebase/auth';
 
 import Button from '~/components/Button';
 import PopPerWrapper from '~/components/PopPer';
 import MenuItem from './MenuItem';
+import { auth } from '~/fireBase';
 
 function Menu({ children, items = [] }) {
     const [history, setHistory] = useState([{ data: items }]);
@@ -16,14 +18,21 @@ function Menu({ children, items = [] }) {
         return current.data.map((item, i) => {
             const isParent = !!item.children;
 
-            const handleChildren = () => {
+            const handleMenuItem = () => {
+                // check children
                 if (isParent) {
                     document.body.classList.add('hidden-overplay');
                     setHistory((prev) => [...prev, item.children]);
                 }
+
+                // check currentUser
+                if (item.currentUser) {
+                    signOut(auth);
+                    window.localStorage.removeItem('user');
+                }
             };
 
-            return <MenuItem key={i} data={item} onClick={handleChildren}></MenuItem>;
+            return <MenuItem key={i} data={item} onClick={handleMenuItem}></MenuItem>;
         });
     };
 
