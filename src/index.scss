@@ -86,6 +86,11 @@
         @apply top-0 transition-all ease-linear;
     }
 
+    // BackGourd
+    .bg-content {
+        @apply bg-gradient-to-t  from-[rgb(3,37,45)] to-gray-900;
+    }
+
     // Button
     .btn {
         @apply text-white px-5 py-2 bg-transparent flex justify-center items-center
@@ -164,6 +169,25 @@
         }
         .swiper-scrollbar-drag {
             @apply cursor-grabbing bg-[#16182333];
+        }
+
+        .swiper-pagination-bullet {
+            @apply bg-[#22c55e];
+        }
+    }
+
+    .container-recommended {
+        .swiper-button-prev,
+        .swiper-button-next {
+            @apply top-[56%];
+        }
+
+        .swiper-button-prev.swiper-button-disabled {
+            @apply cursor-auto opacity-40 pointer-events-auto;
+        }
+
+        .swiper-button-next.swiper-button-disabled {
+            @apply cursor-auto opacity-40 pointer-events-auto;
         }
     }
 }

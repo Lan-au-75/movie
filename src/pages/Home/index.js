@@ -23,7 +23,7 @@ function Home() {
                         {context.movies.map((movie) => (
                             <div key={movie.id} className="min-w-[155px] w-[155px]">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                    <Link to={`/movie/${movie.id}`}>
+                                    <Link to={`/tv/${movie.id}`}>
                                         <Image
                                             className="w-full h-full object-cover object-center rounded-lg"
                                             src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
@@ -34,7 +34,7 @@ function Home() {
                                     <Circle num={movie.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px]">
-                                    <Link to={`/movie/${movie.id}`}>
+                                    <Link to={`/tv/${movie.id}`}>
                                         <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
                                             {movie?.title || movie?.original_name}
                                         </h2>

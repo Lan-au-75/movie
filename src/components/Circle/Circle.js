@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-
+import clsx from 'clsx';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-function Circle({ num }) {
+function Circle({ num, className }) {
     let percentage = Math.floor(num * 10).toString();
 
     if (percentage <= 0) {
         percentage = 'NR';
         return (
             <CircularProgressbar
-                className="absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]"
+                className={clsx(className, 'absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]')}
                 value={percentage}
                 text={`${percentage}`}
                 background={true}
@@ -42,7 +42,7 @@ function Circle({ num }) {
     if (percentage < 40) {
         return (
             <CircularProgressbar
-                className="absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]"
+                className={clsx(className, 'absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]')}
                 value={percentage}
                 text={`${percentage}%`}
                 background={true}
@@ -74,7 +74,7 @@ function Circle({ num }) {
     if (percentage < 70) {
         return (
             <CircularProgressbar
-                className="absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]"
+                className={clsx(className, 'absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]')}
                 value={percentage}
                 text={`${percentage}%`}
                 background={true}
@@ -107,7 +107,7 @@ function Circle({ num }) {
         return (
             <>
                 <CircularProgressbar
-                    className="absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]"
+                    className={clsx(className, 'absolute top-[90%] left-2  w-full h-full max-w-[38px] max-h-[38px]')}
                     value={percentage}
                     text={`${percentage}%`}
                     background={true}

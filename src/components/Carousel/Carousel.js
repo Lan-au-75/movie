@@ -21,6 +21,7 @@ function Carousel({ title, data }) {
                     observer={true}
                     modules={[Navigation, Scrollbar]}
                     spaceBetween={50}
+                    speed={400}
                     slidesPerView={6}
                     navigation={{
                         nextEl: '.swiper-button-next',
@@ -43,7 +44,7 @@ function Carousel({ title, data }) {
                         <SwiperSlide key={data.id}>
                             <div className="max-w-[155px] w-full">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                    <Link to={`/movie/${data.id}`}>
+                                    <Link to={`/tv/${data.id}`}>
                                         <Image
                                             className="w-full h-full object-cover object-center rounded-lg"
                                             src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
@@ -54,7 +55,7 @@ function Carousel({ title, data }) {
                                     <Circle num={data.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px] ">
-                                    <Link to={`/movie/${data.id}`}>
+                                    <Link to={`/tv/${data.id}`}>
                                         <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
                                             {data?.title || data?.original_name}
                                         </h2>
@@ -64,6 +65,7 @@ function Carousel({ title, data }) {
                             </div>
                         </SwiperSlide>
                     ))}
+
                     <div className="swiper-scrollbar"></div>
                     <div className="swiper-button-prev">
                         <GrFormPrevious></GrFormPrevious>

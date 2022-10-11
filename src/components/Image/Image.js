@@ -16,7 +16,7 @@ const Image = forwardRef(({ className, src, alt, fallBack: customFallBack = imag
     return (
         <img
             ref={ref}
-            className={clsx(className, 'overflow-hidden')}
+            className={clsx(className, 'overflow-hidden select-none cursor-pointer')}
             src={fallBack || src}
             alt={alt}
             onError={handleError}
