@@ -102,7 +102,7 @@
     }
 
     .icon {
-        width: 24px;
+        @apply w-6;
     }
 
     .icon + .title,
@@ -130,13 +130,13 @@
     }
 
     .separate {
-        @apply border-t border-solid border-[#21252926];
+        @apply border-t border-solid border-gray-300;
     }
 
     // Hidden overplay
 
     .hidden-overplay {
-        overflow-y: hidden;
+        @apply overflow-y-hidden;
     }
 
     // Swiper custom
@@ -153,7 +153,8 @@
 
     .container {
         .swiper-wrapper {
-            @apply pt-[100px] pb-[50px];
+            padding-top: 100px;
+            padding-bottom: 50px;
         }
 
         .swiper-button-prev.swiper-button-disabled {
@@ -165,21 +166,21 @@
         }
 
         .swiper-scrollbar {
-            @apply absolute top-[98%] h-[10px] w-full left-0 bottom-[10px] bg-[#00000000];
+            @apply absolute top-[98%] h-[10px] w-full left-0 bottom-[10px] bg-slate-200;
         }
         .swiper-scrollbar-drag {
-            @apply cursor-grabbing bg-[#16182333];
+            @apply cursor-grabbing bg-slate-400;
         }
 
         .swiper-pagination-bullet {
-            @apply bg-[#22c55e];
+            @apply bg-green-500;
         }
     }
 
     .container-recommended {
         .swiper-button-prev,
         .swiper-button-next {
-            @apply top-[56%];
+            top: 56%;
         }
 
         .swiper-button-prev.swiper-button-disabled {
