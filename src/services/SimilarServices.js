@@ -2,14 +2,14 @@ import { getHttpRequest } from '~/utils/httpRequest';
 
 import requests from '~/requests';
 
-const detailMovie = async (id) => {
+const similar = async (id) => {
     try {
-        const response = await getHttpRequest(requests.requestDetail(id));
+        const response = await getHttpRequest(requests.requestSimilar(id));
 
-        return response;
+        return response?.results;
     } catch (error) {
         throw new Error(error);
     }
 };
 
-export { detailMovie };
+export { similar };

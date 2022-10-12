@@ -22,6 +22,29 @@ const requests = {
     requestRecommended(id) {
         return `movie/${id}/recommendations?api_key=${ApiKey}&language=en-US&page=1`;
     },
+    requestGetVideos(id) {
+        return `movie/${id}/videos?api_key=${ApiKey}&language=en-US`;
+    },
+    requestSimilar(id) {
+        return `movie/${id}/similar?api_key=${ApiKey}&language=en-US&page=1`;
+    },
+
+    // TV
+    requestDetailTV(id) {
+        return `tv/${id}?api_key=${ApiKey}&language=en-US`;
+    },
+    requestCastTV(id) {
+        return `tv/${id}/credits?api_key=${ApiKey}&language=vi-VN`;
+    },
+    requestRecommendedTV(id) {
+        return `tv/${id}/recommendations?api_key=${ApiKey}&language=en-US&page=1`;
+    },
+    requestGetVideoTV(id) {
+        return `tv/${id}/videos?api_key=${ApiKey}&language=en-US`;
+    },
+    requestSimilarTV(id) {
+        return `tv/${id}/similar?api_key=${ApiKey}&language=en-US&page=1`;
+    },
 };
 
 export default requests;

@@ -59,8 +59,8 @@ function CastList({ data }) {
                         },
                     }}
                 >
-                    {data.casts.map((cast) => (
-                        <SwiperSlide key={cast.cast_id}>
+                    {data.map((cast) => (
+                        <SwiperSlide key={cast?.cast_id || cast?.credit_id}>
                             <div className="max-w-[120px] w-full">
                                 <div className="w-[120px] h-[150px] ">
                                     <Image

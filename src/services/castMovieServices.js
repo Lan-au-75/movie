@@ -8,7 +8,7 @@ const cast = async (id) => {
 
         return response;
     } catch (error) {
-        console.log(error);
+        throw new Error(error);
     }
 };
 

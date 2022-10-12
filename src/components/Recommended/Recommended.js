@@ -11,10 +11,10 @@ import images from '~/assets/images';
 import Image from '~/components/Image';
 import { handleScrollOnTop } from '~/handleEvent';
 
-function Recommended({ data }) {
+function Recommended({ data, title, link }) {
     return (
         <>
-            <h3 className="text-white text-[21px] my-[10px] font-bold">Recommended</h3>
+            <h3 className="text-white text-[21px] my-[10px] font-bold">{title}</h3>
             <div className=" container-recommended w-[90%]">
                 <Swiper
                     observer={true}
@@ -59,11 +59,11 @@ function Recommended({ data }) {
                         },
                     }}
                 >
-                    {data.recommended.map((recommended) => (
+                    {data.map((recommended) => (
                         <SwiperSlide key={recommended.id}>
                             <div className="max-w-[250px] w-full">
                                 <div className="w-[250px] h-[142px] ">
-                                    <Link to={`/movie/${recommended.id}`} onClick={handleScrollOnTop}>
+                                    <Link to={`${link}${recommended.id}`} onClick={handleScrollOnTop}>
                                         <Image
                                             className="w-full h-full object-cover rounded-lg shadow-lg"
                                             src={`https://image.tmdb.org/t/p/original/${recommended?.backdrop_path}`}

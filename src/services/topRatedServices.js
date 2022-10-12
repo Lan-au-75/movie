@@ -12,7 +12,7 @@ const topRated = async ({ page }) => {
 
         return response?.results;
     } catch (error) {
-        console.log(error);
+        throw new Error(error);
     }
 };
 

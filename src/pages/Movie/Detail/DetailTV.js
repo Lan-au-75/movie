@@ -1,25 +1,29 @@
 import { Link, useParams } from 'react-router-dom';
 
+import { useDetail, useVideos, useCastListAPI, useRecommended } from '~/hooks';
+
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import CastList from '~/components/CastList';
 import Circle from '~/components/Circle';
 import Image from '~/components/Image';
 import Videos from '~/components/Videos';
-import RecommendedAPI from '~/components/Recommended/RecommendedAPI';
-import { useCastListAPI, useDetail, useVideos } from '~/hooks';
+import Recommended from '~/components/Recommended';
 
-function Detail() {
+function DetailTV() {
     let { id } = useParams();
 
     const detail = useDetail(id);
     const cast = useCastListAPI(id);
     const videos = useVideos(id);
+    const recommended = useRecommended(id);
 
     const data = {
-        detail: detail.detailMovie,
+        detail: detail.detailTV,
         detailID: id,
     };
+
+    console.log('data', data?.detail);
 
     const truncateString = (str = '', num) => {
         if (str.length > num) {
@@ -92,7 +96,9 @@ function Detail() {
                                 );
                             })}
 
-                            <p className="mt-2 text-white pl-5 ">{data?.detail?.runtime} minute</p>
+                            <p className="mt-2 text-white pl-5 ">
+                                {data?.detail?.runtime || data?.detail?.episode_run_time} minute
+                            </p>
                         </div>
                         <div className="relative flex items-center min-h-[68px] mb-5">
                             <Circle
@@ -107,14 +113,14 @@ function Detail() {
                         <p className="text-white drop-shadow-lg">{data?.detail?.tagline} </p>
                         <p className=" my-[10px] text-[21px] font-bold text-white ">Overview </p>
                         <p className="text-white drop-shadow-lg">{truncateString(data?.detail?.overview, 350)} </p>
-                        <CastList data={cast.castMovie}></CastList>
-                        <Videos data={videos.videoMovie}></Videos>
-                        <RecommendedAPI id={data.detailID} title="Recommended"></RecommendedAPI>
+                        <CastList data={cast.castTV}></CastList>
+                        <Videos data={videos.videoTV}></Videos>
+                        <Recommended data={recommended.recommendedTV} title="Recommended"></Recommended>
+                        <Recommended data={recommended.similarTV} title="Similar Movie"></Recommended>
                     </div>
                 </div>
             </div>
         </>
     );
 }
-
-export default Detail;
+export default DetailTV;

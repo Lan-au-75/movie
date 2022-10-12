@@ -2,9 +2,9 @@ import { getHttpRequest } from '~/utils/httpRequest';
 
 import requests from '~/requests';
 
-const peoplePopular = async () => {
+const recommendedTV = async (id) => {
     try {
-        const response = await getHttpRequest(requests.requestPeoplePopular);
+        const response = await getHttpRequest(requests.requestRecommendedTV(id));
 
         return response?.results;
     } catch (error) {
@@ -12,4 +12,4 @@ const peoplePopular = async () => {
     }
 };
 
-export { peoplePopular };
+export { recommendedTV };

@@ -8,6 +8,7 @@ const routers = {
     topRated: '/movie/top_rated',
     upcoming: '/movie/upcoming',
     detail: '/movie/:id',
+    detailTV: '/tv/:id',
 };
 
 export default routers;

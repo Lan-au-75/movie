@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Navigation, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { memo } from 'react';
 
 import 'swiper/css/bundle';
 import 'swiper/scss';
@@ -11,8 +11,21 @@ import 'swiper/scss';
 import images from '~/assets/images';
 import Circle from '~/components/Circle';
 import Image from '~/components/Image';
+import { handleScrollOnTop } from '~/handleEvent';
 
 function Carousel({ title, data }) {
+    const navigate = useNavigate();
+
+    const handleClick = (e, id) => {
+        if (data[id].media_type === 'tv') {
+            navigate(`/tv/${data[id].id}`);
+        } else {
+            navigate(`/movie/${data[id].id}`);
+        }
+
+        handleScrollOnTop();
+    };
+
     return (
         <>
             <h2 className="text-2xl text-black font-bold pt-[30px]">{title}</h2>
@@ -40,27 +53,27 @@ function Carousel({ title, data }) {
                     wrapperClass="swiper-wrapper"
                     className="mt-[-80px]"
                 >
-                    {data.map((data) => (
-                        <SwiperSlide key={data.id}>
+                    {data.map((item, id) => (
+                        <SwiperSlide key={item.id}>
                             <div className="max-w-[155px] w-full">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                    <Link to={`/tv/${data.id}`}>
+                                    <div onClick={(e) => handleClick(e, id)}>
                                         <Image
                                             className="w-full h-full object-cover object-center rounded-lg"
-                                            src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
-                                            alt={data?.title}
+                                            src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                                            alt={item?.title}
                                             fallBack={images.noPoster}
                                         />
-                                    </Link>
-                                    <Circle num={data.vote_average}></Circle>
+                                    </div>
+                                    <Circle num={item.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px] ">
-                                    <Link to={`/tv/${data.id}`}>
-                                        <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
-                                            {data?.title || data?.original_name}
+                                    <div onClick={(e) => handleClick(e, id)}>
+                                        <h2 className="text-[#000] font-bold cursor-pointer hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
+                                            {item?.title || item?.original_name}
                                         </h2>
-                                    </Link>
-                                    <p className="text-[#00000099]"> {data?.release_date || data?.first_air_date}</p>
+                                    </div>
+                                    <p className="text-[#00000099]"> {item?.release_date || item?.first_air_date}</p>
                                 </div>
                             </div>
                         </SwiperSlide>

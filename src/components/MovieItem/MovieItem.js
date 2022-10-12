@@ -6,6 +6,7 @@ import { AiOutlineArrowUp } from 'react-icons/ai';
 import images from '~/assets/images';
 import Circle from '~/components/Circle';
 import Image from '~/components/Image';
+import { handleScrollOnTop } from '~/handleEvent';
 
 function MovieItem({ title, movies = [], onClick }) {
     const [showGoToTop, setShowGoToTop] = useState(false);
@@ -39,7 +40,7 @@ function MovieItem({ title, movies = [], onClick }) {
                             className="min-w-[180px] w-[180px] border border-solid border-[#e3e3e3] rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
                         >
                             <div className="relative w-[180px] h-[273px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                <Link to={`/movie/${data?.id}`}>
+                                <Link to={`/movie/${data?.id}`} onClick={handleScrollOnTop}>
                                     <Image
                                         className="w-full h-full object-cover object-center rounded-lg"
                                         src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
@@ -50,7 +51,7 @@ function MovieItem({ title, movies = [], onClick }) {
                                 <Circle num={data.vote_average}></Circle>
                             </div>
                             <div className="pt-[26px] px-[10px] pb-[12px]">
-                                <Link to={`/movie/${data?.id}`}>
+                                <Link to={`/movie/${data?.id}`} onClick={handleScrollOnTop}>
                                     <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
                                         {data?.title}
                                     </h2>

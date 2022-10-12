@@ -7,6 +7,7 @@ import Circle from '~/components/Circle';
 import Image from '~/components/Image';
 import Slider from '~/components/Slider';
 import { HomeContext } from '~/components/Context/HomeContext';
+import { handleScrollOnTop } from '~/handleEvent';
 
 function Home() {
     const context = useContext(HomeContext);
@@ -23,7 +24,7 @@ function Home() {
                         {context.movies.map((movie) => (
                             <div key={movie.id} className="min-w-[155px] w-[155px]">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                    <Link to={`/tv/${movie.id}`}>
+                                    <Link to={`/tv/${movie.id}`} onClick={handleScrollOnTop}>
                                         <Image
                                             className="w-full h-full object-cover object-center rounded-lg"
                                             src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
@@ -34,7 +35,7 @@ function Home() {
                                     <Circle num={movie.vote_average}></Circle>
                                 </div>
                                 <div className="pt-[26px] px-[10px]">
-                                    <Link to={`/tv/${movie.id}`}>
+                                    <Link to={`/tv/${movie.id}`} onClick={handleScrollOnTop}>
                                         <h2 className="text-[#000] font-bold hover:text-[rgb(1,180,228)] line-clamp-2 text-ellipsis">
                                             {movie?.title || movie?.original_name}
                                         </h2>

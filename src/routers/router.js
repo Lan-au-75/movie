@@ -6,7 +6,8 @@ import DefaultLayout, { Authentication } from '~/layouts';
 // Page
 import Home from '~/pages/Home';
 import LoginScreen from '~/pages/LoginScreen';
-import Detail from '~/pages/Movie/Detail/DetailAPI';
+import Detail from '~/pages/Movie/Detail';
+import DetailTV from '~/pages/Movie/Detail/DetailTV';
 import Popular from '~/pages/Movie/Popular';
 import TopRated from '~/pages/Movie/TopRated';
 import Trending from '~/pages/Movie/Trending';
@@ -60,6 +61,12 @@ const publicRouter = [
     {
         path: config.routers.detail,
         element: Detail,
+        layout: DefaultLayout,
+    },
+
+    {
+        path: config.routers.detailTV,
+        element: DetailTV,
         layout: DefaultLayout,
     },
 ];
