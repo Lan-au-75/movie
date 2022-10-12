@@ -5,16 +5,17 @@ import Button from '~/components/Button';
 import CastList from '~/components/CastList';
 import Circle from '~/components/Circle';
 import Image from '~/components/Image';
-import Videos from '~/components/Videos';
 import RecommendedAPI from '~/components/Recommended/RecommendedAPI';
-import { useCastListAPI, useDetail, useVideos } from '~/hooks';
+import Videos from '~/components/Videos';
+import { handleScrollOnTop } from '~/handleEvent';
+import { useCastListMovie, useDetailMovie, useVideoMovie } from '~/hooks';
 
 function Detail() {
     let { id } = useParams();
 
-    const detail = useDetail(id);
-    const cast = useCastListAPI(id);
-    const videos = useVideos(id);
+    const detail = useDetailMovie(id);
+    const cast = useCastListMovie(id);
+    const videos = useVideoMovie(id);
 
     const data = {
         detail: detail.detailMovie,
@@ -35,12 +36,14 @@ function Detail() {
                 {/* overplay */}
                 <div className="absolute  w-full h-[700px]  mt-[var(--header-height)] bg-[rgba(2,13,24,.75)]"></div>
                 <div className=" mt-[var(--header-height)] w-full h-[700px]">
-                    <Image
-                        className="w-full h-full object-cover"
-                        src={`https://image.tmdb.org/t/p/original/${data?.detail?.backdrop_path}`}
-                        alt={data?.detail?.title || data?.detail?.original_title}
-                        fallBack={images.noPoster}
-                    />
+                    {data?.detail?.backdrop_path && (
+                        <Image
+                            className="w-full h-full object-cover"
+                            src={`https://image.tmdb.org/t/p/original/${data?.detail?.backdrop_path}`}
+                            alt={data?.detail?.title || data?.detail?.original_title}
+                            fallBack={images.noPoster}
+                        />
+                    )}
                 </div>
             </div>
 
@@ -48,14 +51,18 @@ function Detail() {
                 <div className="flex justify-center relative mt-[-18%]  h-full">
                     <div className="px-8 py-3 h-full">
                         <div className="max-w-[284px] max-h-[432px] ">
-                            <Image
-                                className="w-full h-full object-cover rounded-3xl shadow-lg"
-                                src={`https://image.tmdb.org/t/p/original/${data?.detail?.poster_path}`}
-                                alt={data?.detail?.title || data?.detail?.original_title}
-                                fallBack={images.noPoster}
-                            />
+                            {data?.detail?.poster_path && (
+                                <Image
+                                    className="w-full h-full object-cover rounded-3xl shadow-lg"
+                                    src={`https://image.tmdb.org/t/p/original/${data?.detail?.poster_path}`}
+                                    alt={data?.detail?.title || data?.detail?.original_title}
+                                    fallBack={images.noPoster}
+                                />
+                            )}
 
                             <Button
+                                to={`/watching/${data.detailID}`}
+                                onClick={handleScrollOnTop}
                                 className="btn min-h-[50px] bg-red-600  w-full text-white  mt-7
                              hover:bg-red-600/95 hover:text-teal-50 transition-all capitalize"
                             >

@@ -9,13 +9,14 @@ function Videos({ data }) {
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
             controls: 1,
+
             autoplay: 0,
             modestbranding: 1,
             loop: 1,
             rel: 0,
             autohide: 1,
             enablejsapi: 1,
-            origin: `${window.location.host}`,
+            origin: `http://localhost:3000/`,
         },
     };
 

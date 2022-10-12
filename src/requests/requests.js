@@ -5,8 +5,11 @@ export const QUERY = 'a';
 export const ApiKey = process.env.REACT_APP_IMDB_API_kEY;
 
 const requests = {
-    requestTrendingAll: `trending/all/day?api_key=${ApiKey}`,
+    // TV
     requestTrendingTV: `trending/tv/day?api_key=${ApiKey}`,
+
+    // Movie
+    requestTrendingAll: `trending/all/day?api_key=${ApiKey}`,
     requestTrending: `movie/now_playing?api_key=${ApiKey}&language=en-US&page=${INIT_PAGE}`,
     requestPeoplePopular: `person/popular?api_key=${ApiKey}&language=en-US&page=1`,
     requestPopular: `movie/popular?api_key=${ApiKey}&language=en-US&page=${INIT_PAGE}`,

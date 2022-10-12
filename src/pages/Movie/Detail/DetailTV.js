@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 
-import { useDetail, useVideos, useCastListAPI, useRecommended } from '~/hooks';
+import { useDetailTV, useVideoTV, useCastListTV } from '~/hooks';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
@@ -8,22 +8,20 @@ import CastList from '~/components/CastList';
 import Circle from '~/components/Circle';
 import Image from '~/components/Image';
 import Videos from '~/components/Videos';
-import Recommended from '~/components/Recommended';
+import { handleScrollOnTop } from '~/handleEvent';
+import RecommendedTV from '~/components/Recommended/RecommendedTV';
 
 function DetailTV() {
     let { id } = useParams();
 
-    const detail = useDetail(id);
-    const cast = useCastListAPI(id);
-    const videos = useVideos(id);
-    const recommended = useRecommended(id);
+    const detail = useDetailTV(id);
+    const cast = useCastListTV(id);
+    const videos = useVideoTV(id);
 
     const data = {
         detail: detail.detailTV,
         detailID: id,
     };
-
-    console.log('data', data?.detail);
 
     const truncateString = (str = '', num) => {
         if (str.length > num) {
@@ -39,12 +37,14 @@ function DetailTV() {
                 {/* overplay */}
                 <div className="absolute  w-full h-[700px]  mt-[var(--header-height)] bg-[rgba(2,13,24,.75)]"></div>
                 <div className=" mt-[var(--header-height)] w-full h-[700px]">
-                    <Image
-                        className="w-full h-full object-cover"
-                        src={`https://image.tmdb.org/t/p/original/${data?.detail?.backdrop_path}`}
-                        alt={data?.detail?.title || data?.detail?.original_title}
-                        fallBack={images.noPoster}
-                    />
+                    {data?.detail?.backdrop_path && (
+                        <Image
+                            className="w-full h-full object-cover"
+                            src={`https://image.tmdb.org/t/p/original/${data?.detail?.backdrop_path}`}
+                            alt={data?.detail?.title || data?.detail?.original_title}
+                            fallBack={images.noPoster}
+                        />
+                    )}
                 </div>
             </div>
 
@@ -52,14 +52,18 @@ function DetailTV() {
                 <div className="flex justify-center relative mt-[-18%]  h-full">
                     <div className="px-8 py-3 h-full">
                         <div className="max-w-[284px] max-h-[432px] ">
-                            <Image
-                                className="w-full h-full object-cover rounded-3xl shadow-lg"
-                                src={`https://image.tmdb.org/t/p/original/${data?.detail?.poster_path}`}
-                                alt={data?.detail?.title || data?.detail?.original_title}
-                                fallBack={images.noPoster}
-                            />
+                            {data?.detail?.poster_path && (
+                                <Image
+                                    className="w-full h-full object-cover rounded-3xl shadow-lg"
+                                    src={`https://image.tmdb.org/t/p/original/${data?.detail?.poster_path}`}
+                                    alt={data?.detail?.title || data?.detail?.original_title}
+                                    fallBack={images.noPoster}
+                                />
+                            )}
 
                             <Button
+                                to={`/watchingTv/${data.detailID}`}
+                                onClick={handleScrollOnTop}
                                 className="btn min-h-[50px] bg-red-600  w-full text-white  mt-7
                              hover:bg-red-600/95 hover:text-teal-50 transition-all capitalize"
                             >
@@ -115,8 +119,7 @@ function DetailTV() {
                         <p className="text-white drop-shadow-lg">{truncateString(data?.detail?.overview, 350)} </p>
                         <CastList data={cast.castTV}></CastList>
                         <Videos data={videos.videoTV}></Videos>
-                        <Recommended data={recommended.recommendedTV} title="Recommended"></Recommended>
-                        <Recommended data={recommended.similarTV} title="Similar Movie"></Recommended>
+                        <RecommendedTV id={data.detailID}></RecommendedTV>
                     </div>
                 </div>
             </div>

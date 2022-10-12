@@ -103,7 +103,7 @@ function Search() {
                                         fallBack={images?.noPoster}
                                     />
                                 </Link>
-                                <Circle num={data.vote_average}></Circle>
+                                <Circle className="top-[92%]" num={data.vote_average}></Circle>
                             </div>
                             <div className="pt-[26px] px-[10px] pb-[12px]">
                                 <Link to={`/movie/${data?.id}`}>

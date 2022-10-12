@@ -64,12 +64,16 @@ function Recommended({ data, title, link }) {
                             <div className="max-w-[250px] w-full">
                                 <div className="w-[250px] h-[142px] ">
                                     <Link to={`${link}${recommended.id}`} onClick={handleScrollOnTop}>
-                                        <Image
-                                            className="w-full h-full object-cover rounded-lg shadow-lg"
-                                            src={`https://image.tmdb.org/t/p/original/${recommended?.backdrop_path}`}
-                                            alt={recommended?.title || recommended?.original_name}
-                                            fallBack={images.noPoster}
-                                        />
+                                        {recommended?.backdrop_path ? (
+                                            <Image
+                                                className="w-full h-full object-cover rounded-lg shadow-lg"
+                                                src={`https://image.tmdb.org/t/p/original/${recommended?.backdrop_path}`}
+                                                alt={recommended?.title || recommended?.original_name}
+                                                fallBack={images.noPoster}
+                                            />
+                                        ) : (
+                                            <></>
+                                        )}
                                     </Link>
                                 </div>
                             </div>

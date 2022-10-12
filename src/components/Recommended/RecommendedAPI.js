@@ -1,10 +1,11 @@
 import { memo } from 'react';
 
-import { useRecommended } from '~/hooks';
+import { useRecommendedMovie } from '~/hooks';
 import Recommended from './Recommended';
 
 function RecommendedAPI({ id }) {
-    const data = useRecommended(id);
+    const data = useRecommendedMovie(id);
+
     const link = '/movie/';
 
     return (

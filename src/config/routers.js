@@ -9,6 +9,8 @@ const routers = {
     upcoming: '/movie/upcoming',
     detail: '/movie/:id',
     detailTV: '/tv/:id',
+    watchingMovie: '/watching/:id',
+    watchingTV: '/watchingTv/:id',
 };
 
 export default routers;

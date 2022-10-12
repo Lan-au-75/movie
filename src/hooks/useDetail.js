@@ -11,23 +11,8 @@ import * as SimilarTVServices from '~/services/SimilarTVServices';
 import * as recommendedMovieServices from '~/services/recommendedMovieServices';
 import * as SimilarServices from '~/services/SimilarServices';
 
-function useDetail(id) {
-    const [detailTV, setDetailTV] = useState([]);
+function useDetailMovie(id) {
     const [detailMovie, setDetailMovie] = useState([]);
-
-    // TV
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            const data = await detailTVServices.detailTV(id);
-
-            if (data) {
-                setDetailTV(data);
-            }
-        };
-
-        fetchApi();
-    }, [id]);
 
     // Movie
 
@@ -44,31 +29,38 @@ function useDetail(id) {
     }, [id]);
 
     const detail = {
-        detailTV,
         detailMovie,
     };
 
     return detail;
 }
 
-function useCastListAPI(id) {
-    const [castTV, setCastTV] = useState([]);
-
-    const [castMovie, setCastMovie] = useState([]);
+function useDetailTV(id) {
+    const [detailTV, setDetailTV] = useState([]);
 
     // TV
 
     useEffect(() => {
         const fetchApi = async () => {
-            const data = await castMovieTVServices.castTV(id);
+            const data = await detailTVServices.detailTV(id);
 
             if (data) {
-                setCastTV(data?.cast.slice(0, 10));
+                setDetailTV(data);
             }
         };
 
         fetchApi();
     }, [id]);
+
+    const detail = {
+        detailTV,
+    };
+
+    return detail;
+}
+
+function useCastListMovie(id) {
+    const [castMovie, setCastMovie] = useState([]);
 
     // Movie
 
@@ -86,28 +78,35 @@ function useCastListAPI(id) {
 
     const cast = {
         castMovie,
+    };
+
+    return cast;
+}
+
+function useCastListTV(id) {
+    const [castTV, setCastTV] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const data = await castMovieTVServices.castTV(id);
+
+            if (data) {
+                setCastTV(data?.cast.slice(0, 10));
+            }
+        };
+
+        fetchApi();
+    }, [id]);
+
+    const cast = {
         castTV,
     };
 
     return cast;
 }
 
-function useVideos(id) {
-    const [videoTV, setVideoTV] = useState([]);
+function useVideoMovie(id) {
     const [videoMovie, setVideoMovie] = useState([]);
-
-    // TV
-    useEffect(() => {
-        const fetchApi = async () => {
-            const data = await VideoTVServices.videoTV(id);
-
-            if (data) {
-                setVideoTV(data);
-            }
-        };
-
-        fetchApi();
-    }, [id]);
 
     // Movie
 
@@ -124,42 +123,36 @@ function useVideos(id) {
     }, [id]);
 
     const videos = {
-        videoTV,
         videoMovie,
     };
 
     return videos;
 }
 
-function useRecommended(id) {
-    const [recommendedTV, setRecommendedTV] = useState([]);
-    const [similarTV, setSimilarTV] = useState([]);
+function useVideoTV(id) {
+    const [videoTV, setVideoTV] = useState([]);
 
-    //  TV
+    // TV
     useEffect(() => {
         const fetchApi = async () => {
-            const data = await recommendedMovieTVServices.recommendedTV(id);
+            const data = await VideoTVServices.videoTV(id);
 
             if (data) {
-                setRecommendedTV(data.slice(0, 10));
+                setVideoTV(data);
             }
         };
 
         fetchApi();
     }, [id]);
 
-    useEffect(() => {
-        const fetchApi = async () => {
-            const data = await SimilarTVServices.similarTV(id);
+    const videos = {
+        videoTV,
+    };
 
-            if (data) {
-                setSimilarTV(data.slice(0, 10));
-            }
-        };
+    return videos;
+}
 
-        fetchApi();
-    }, [id]);
-
+function useRecommendedMovie(id) {
     // Movie
 
     const [recommendedMovie, setRecommendedMovie] = useState([]);
@@ -190,13 +183,57 @@ function useRecommended(id) {
     }, [id]);
 
     const data = {
-        recommendedTV,
         recommendedMovie,
-        similarTV,
         similarMovie,
     };
 
     return data;
 }
 
-export { useDetail, useCastListAPI, useVideos, useRecommended };
+function useRecommendedTV(id) {
+    const [recommendedTV, setRecommendedTV] = useState([]);
+    const [similarTV, setSimilarTV] = useState([]);
+
+    //  TV
+    useEffect(() => {
+        const fetchApi = async () => {
+            const data = await recommendedMovieTVServices.recommendedTV(id);
+
+            if (data) {
+                setRecommendedTV(data.slice(0, 10));
+            }
+        };
+
+        fetchApi();
+    }, [id]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const data = await SimilarTVServices.similarTV(id);
+
+            if (data) {
+                setSimilarTV(data.slice(0, 10));
+            }
+        };
+
+        fetchApi();
+    }, [id]);
+
+    const data = {
+        recommendedTV,
+        similarTV,
+    };
+
+    return data;
+}
+
+export {
+    useDetailMovie,
+    useCastListMovie,
+    useVideoMovie,
+    useRecommendedMovie,
+    useRecommendedTV,
+    useCastListTV,
+    useVideoTV,
+    useDetailTV,
+};

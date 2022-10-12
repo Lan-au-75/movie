@@ -57,7 +57,7 @@ function Carousel({ title, data }) {
                         <SwiperSlide key={item.id}>
                             <div className="max-w-[155px] w-full">
                                 <div className="relative w-[155px] h-[225px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                    <div onClick={(e) => handleClick(e, id)}>
+                                    <div className="w-full h-full" onClick={(e) => handleClick(e, id)}>
                                         <Image
                                             className="w-full h-full object-cover object-center rounded-lg"
                                             src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}

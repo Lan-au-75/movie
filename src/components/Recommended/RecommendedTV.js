@@ -2,10 +2,10 @@ import { memo } from 'react';
 
 import Recommended from './Recommended';
 
-import { useRecommended } from '~/hooks';
+import { useRecommendedTV } from '~/hooks';
 
 function RecommendedTV({ id }) {
-    const data = useRecommended(id);
+    const data = useRecommendedTV(id);
 
     const link = '/tv/';
 

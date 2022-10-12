@@ -5,15 +5,17 @@ import DefaultLayout, { Authentication } from '~/layouts';
 
 // Page
 import Home from '~/pages/Home';
-import LoginScreen from '~/pages/LoginScreen';
+import Search from '~/pages/Search';
+import SignUp from '~/pages/SignUp';
 import Detail from '~/pages/Movie/Detail';
-import DetailTV from '~/pages/Movie/Detail/DetailTV';
 import Popular from '~/pages/Movie/Popular';
+import Watching from '~/pages/Movie/Watching';
+import WatchingTV from '~/pages/Movie/Watching/WatchingTV';
 import TopRated from '~/pages/Movie/TopRated';
 import Trending from '~/pages/Movie/Trending';
 import Upcoming from '~/pages/Movie/Upcoming';
-import Search from '~/pages/Search';
-import SignUp from '~/pages/SignUp';
+import LoginScreen from '~/pages/LoginScreen';
+import DetailTV from '~/pages/Movie/Detail/DetailTV';
 
 const publicRouter = [
     {
@@ -67,6 +69,18 @@ const publicRouter = [
     {
         path: config.routers.detailTV,
         element: DetailTV,
+        layout: DefaultLayout,
+    },
+
+    {
+        path: config.routers.watchingMovie,
+        element: Watching,
+        layout: DefaultLayout,
+    },
+
+    {
+        path: config.routers.watchingTV,
+        element: WatchingTV,
         layout: DefaultLayout,
     },
 ];

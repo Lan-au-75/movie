@@ -40,7 +40,7 @@ function MovieItem({ title, movies = [], onClick }) {
                             className="min-w-[180px] w-[180px] border border-solid border-[#e3e3e3] rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
                         >
                             <div className="relative w-[180px] h-[273px] rounded-lg shadow-[0 2px 8px rgb(0 0 0 / 10%)]">
-                                <Link to={`/movie/${data?.id}`} onClick={handleScrollOnTop}>
+                                <Link className="w-full h-full" to={`/movie/${data?.id}`} onClick={handleScrollOnTop}>
                                     <Image
                                         className="w-full h-full object-cover object-center rounded-lg"
                                         src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
@@ -48,7 +48,7 @@ function MovieItem({ title, movies = [], onClick }) {
                                         fallBack={images?.noPoster}
                                     />
                                 </Link>
-                                <Circle num={data.vote_average}></Circle>
+                                <Circle className="top-[92%]" num={data.vote_average}></Circle>
                             </div>
                             <div className="pt-[26px] px-[10px] pb-[12px]">
                                 <Link to={`/movie/${data?.id}`} onClick={handleScrollOnTop}>
